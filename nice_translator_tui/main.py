@@ -16,7 +16,7 @@ from threading import Lock, Thread
 import time
 
 import nice_translator_tui.translate as translate
-import pkg_resources
+import os
 
 def run():
     line_cursor_pos = 0
@@ -192,4 +192,4 @@ def run():
     application.run()
 
 def get_config_file_path():
-    print(pkg_resources.resource_filename(__name__, "config.json"))
+    print(os.path.join(os.path.expanduser('~'), 'wox_nice_tran_config.json'))

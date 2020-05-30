@@ -8,6 +8,7 @@ import urllib
 import random
 import json
 import pkg_resources
+import os
 
 app_id = ''
 secret_key = ''
@@ -16,12 +17,22 @@ target_languages = [
     'en',
 ]
 
-data = pkg_resources.resource_string(__name__, "config.json")
-cfg = json.loads(data)
-app_id = cfg['app_id']
-secret_key = cfg['secret_key']
-if cfg.get('target_languages') is not None:
-    target_languages = cfg.get('target_languages')
+config_file_path = os.path.join(os.path.expanduser('~'), 'wox_nice_tran_config.json')
+if not os.path.exists(config_file_path) :
+    json.dump({
+        'app_id': '',
+        'secret_key': '',
+        'target_languages': [
+            'zh',
+            'en'
+        ]
+    }, open(config_file_path, 'a'))
+else :
+    cfg = json.load(open(config_file_path))
+    app_id = cfg['app_id']
+    secret_key = cfg['secret_key']
+    if cfg.get('target_languages') is not None:
+        target_languages = cfg.get('target_languages')
 
 httpClient = None
 fromLang = 'auto'
@@ -247,7 +258,8 @@ def translate(q):
                 if tran_rs['from'] == 'ERROR':
                     finalrs.append(' ' * tab2 + 'Please check your appid and secret_key configurations')
                     finalrs.append('')
-                    finalrs.append(' ' * tab2 + pkg_resources.resource_filename(__name__, "config.json"))
+                    finalrs.append(' ' * tab2 + config_file_path)
+                    finalrs.append('')
                     break
 
     return finalrs

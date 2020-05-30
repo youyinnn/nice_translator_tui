@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="nice_translator_tui",
-    version="0.1.6",
+    version="0.2.0",
     
     # a list of strings specifying the packages that setuptools will manipulate
     packages=find_packages(),
