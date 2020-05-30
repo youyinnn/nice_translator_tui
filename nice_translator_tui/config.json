@@ -1,0 +1,10 @@
+{
+    "app_id": "",
+    "secret_key": "",
+    "target_languages" : [
+        "zh", 
+        "en",
+        "jp", 
+        "kor"
+    ]
+}
