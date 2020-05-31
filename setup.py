@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+import pkg_resources
 
 setup(
     name="nice_translator_tui",
-    version="0.2.0",
+    version="0.2.3",
     
     # a list of strings specifying the packages that setuptools will manipulate
     packages=find_packages(),
@@ -12,6 +13,9 @@ setup(
         # If any package contains *.txt or *.rst files, include them:
         "nice_translator_tui": ["*.json"]
     },
+
+    long_description=open('README.md', encoding='utf-8').read(),
+    long_description_content_type='text/markdown',
     
     # project dependences
     install_requires=[
